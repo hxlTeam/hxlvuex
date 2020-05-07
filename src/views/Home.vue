@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{$store.state.count}}
+    <br>
+    {{$store.getters.tenCount}}
+    <br>
+    <button @click="add">同步增加</button>
+    <br>
+    <button @click="minus">异步减少</button>
+    <br>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  name: "Home",
+  methods: {
+    add() {
+      this.$store.commit("syncAdd", 2);
+    },
+    minus() {
+      this.$store.dispatch('asyncMinus',3);
+    }
+  },
+  mounted() {
+    // console.log(this.$store);
+    // setTimeout(() => {
+    //   // console.log(this.$store.state);
+    //   this.$store.state.count--;
+    // }, 1000);
   }
-}
+};
 </script>
