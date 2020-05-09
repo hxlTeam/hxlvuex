@@ -7,6 +7,12 @@ export default new Vuex.Store({
   state: {
     age: 18
   },
+  getters: {
+    myAge(state) {
+      console.log(state);
+      return state.age + 10;
+    }
+  },
   mutations: {
   },
   actions: {

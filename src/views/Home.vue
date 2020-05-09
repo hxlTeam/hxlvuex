@@ -2,7 +2,9 @@
   <div class="home">
     Home
     <br>
-    {{this.$store.state.age}}
+    age: {{this.$store.state.age}}
+    <br>
+    myAge: {{this.$store.getters.myAge}}
   </div>
 </template>
 
