@@ -2,7 +2,13 @@ let Vue;
 
 class Store {
   constructor(options) {
-    this._state = options.state;
+    this._vm = new Vue({
+      data() {
+        return {
+          state: options.state // 把state对象变成了可以监控的对象
+        }
+      }
+    })
 
     let getters = options.getters || {}; // 用户传过来的getters
     this._getters = {};
@@ -15,7 +21,7 @@ class Store {
     })
   }
   get state() {
-    return this._state;
+    return this._vm.state;
   }
   get getters() {
     return this._getters;
