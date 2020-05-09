@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     Home
+    <br>
+    {{this.$store.state.age}}
   </div>
 </template>
 
@@ -8,6 +10,9 @@
 // @ is an alias to /src
 
 export default {
-  name: 'Home'
+  name: 'Home',
+  mounted() {
+    // console.log(this.$store);
+  }
 }
 </script>
