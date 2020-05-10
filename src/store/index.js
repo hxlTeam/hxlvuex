@@ -14,6 +14,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    syncAdd(state,payload){
+      state.age += payload; // 81:40
+    }
   },
   actions: {
   },

@@ -5,6 +5,8 @@
     age: {{this.$store.state.age}}
     <br />
     myAge: {{this.$store.getters.myAge}}
+    <br />
+    <button @click="handleAdd">提交mutations增加10</button>
   </div>
 </template>
 
@@ -13,6 +15,11 @@
 
 export default {
   name: "Home",
+  methods: {
+    handleAdd() {
+      this.$store.commit('syncAdd',10)
+    }
+  },
   mounted() {
     // console.log(this.$store);
     setTimeout(() => {

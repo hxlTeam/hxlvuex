@@ -8,7 +8,7 @@ class Store {
           state: options.state // 把state对象变成了可以监控的对象
         }
       }
-    })
+    });
 
     let getters = options.getters || {}; // 用户传过来的getters
     this._getters = {};
@@ -17,14 +17,25 @@ class Store {
         get: () => {
           return getters[propName](this.state);
         }
-      })
-    })
+      });
+
+      let mutations = options.mutations || {};
+      this.mutations = {};
+      Object.keys(mutations).forEach(propName=>{
+        this.mutations[propName] = (payload)=>{
+          mutations[propName](this.state,payload);
+        };
+      });
+    });
   }
   get state() {
     return this._vm.state;
   }
   get getters() {
     return this._getters;
+  }
+  commit(type,payload){
+    this.mutations[type](payload);
   }
 }
 
