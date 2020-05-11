@@ -7,6 +7,8 @@
     myAge: {{this.$store.getters.myAge}}
     <br />
     <button @click="handleAdd">提交mutations增加10</button>
+    <br />
+    <button @click="handleMinus">提交actions减少10</button>
   </div>
 </template>
 
@@ -18,6 +20,9 @@ export default {
   methods: {
     handleAdd() {
       this.$store.commit('syncAdd',10)
+    },
+    handleMinus() {
+      this.$store.dispatch('asyncMinus',10)
     }
   },
   mounted() {

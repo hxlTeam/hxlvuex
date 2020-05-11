@@ -15,10 +15,19 @@ export default new Vuex.Store({
   },
   mutations: {
     syncAdd(state,payload){
-      state.age += payload; // 81:40
+      state.age += payload;
+    },
+    syncMinus(state,payload) {
+      state.age -= payload;
     }
   },
   actions: {
+    asyncMinus({commit,dispatch},payload) {
+      console.log(dispatch);
+      setTimeout(() => {
+        commit('syncMinus',payload);
+      }, 1000);
+    }
   },
   modules: {
   }

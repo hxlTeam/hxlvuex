@@ -29,9 +29,17 @@ class Store {
     this.mutations = {};
     forEach(mutations, (propName, fn) => {
       this.mutations[propName] = (payload) => {
-        fn(this.state, payload);
+        fn.call(this,this.state, payload);
       };
     });
+
+    let actions = options.actions || {};
+    this.actions = {};
+    forEach(actions, (propName, fn) => {
+      this.actions[propName] = (payload) => {
+        fn.call(this,this, payload);
+      }
+    })
   }
   get state() {
     return this._vm.state;
@@ -39,8 +47,11 @@ class Store {
   get getters() {
     return this._getters;
   }
-  commit(type, payload) {
+  commit = (type, payload) => {
     this.mutations[type](payload);
+  }
+  dispatch = (type, payload) => {
+    this.actions[type](payload);
   }
 }
 
