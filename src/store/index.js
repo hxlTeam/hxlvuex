@@ -36,7 +36,7 @@ export default new Vuex.Store({
       },
       getters: {
         getA(state) {
-          console.log(state);
+          // console.log(state);
           return state.x + 100 + 'a';
         }
       },
@@ -55,13 +55,13 @@ export default new Vuex.Store({
           state: {
             z: 3
           },
-          // modules: {
-          //   d: {
-          //     state: {
-          //       zz: 4
-          //     }
-          //   }
-          // }
+          modules: {
+            d: {
+              state: {
+                zz: 4
+              }
+            }
+          }
         }
       }
     },

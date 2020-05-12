@@ -18,13 +18,13 @@ class ModuleCollection {
       this.root = newModule;
     } else {
       let parent = path.slice(0, -1).reduce((root, current) => {
-        return this.root._children[current];
+        return root._children[current];
       }, this.root);
       parent._children[path[path.length - 1]] = newModule;
     }
     if (rootModule.modules) {
       forEach(rootModule.modules, (moduleName, module) => {
-        console.log(moduleName, path);
+        console.log(`key:${moduleName}, path:${path}`);
         this.register(path.concat(moduleName), module);
       });
     }
@@ -161,7 +161,7 @@ const install = (_Vue) => {
   // console.log('install');
   Vue.mixin({
     beforeCreate() {
-      console.log(this.$options.name);
+      // console.log(this.$options.name);
       if (this.$options && this.$options.store) {
         this.$store = this.$options.store;
       } else {
