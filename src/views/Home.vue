@@ -9,6 +9,15 @@
     <button @click="handleAdd">提交mutations增加10</button>
     <br />
     <button @click="handleMinus">提交actions减少10</button>
+    <!-- <br>
+    {{this.$store.state.a.x}}
+    <br>
+    {{this.$store.state.b.y}} -->
+    <br>
+    {{this.$store.getters.getA}}
+    <br>
+    {{this.$store.state.a.x}}
+    <button @click="changeX">更新x</button>
   </div>
 </template>
 
@@ -23,6 +32,9 @@ export default {
     },
     handleMinus() {
       this.$store.dispatch('asyncMinus',10)
+    },
+    changeX() {
+      this.$store.commit('changeX');
     }
   },
   mounted() {
